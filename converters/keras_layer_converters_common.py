@@ -22,5 +22,6 @@ _activation_map = {
     # alpha parameter. Keras sometimes saves them without this
     # information, in which case we assume it's 1.
     'elu': {'alpha': 1.0, 'function': 'elu'},
-    'swish': {'alpha': 1.0, 'function': 'swish'}
+    'swish': {'alpha': 1.0, 'function': 'swish'},
+    'selu':'selu'
 }

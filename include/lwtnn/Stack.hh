@@ -304,11 +304,12 @@ namespace lwt {
   double nn_hard_sigmoid( double x );
   double nn_tanh( double x );
   double nn_relu( double x );
+  // double nn_selu( double x );
   class ELU
   {
   public:
     ELU(double alpha);
-    double operator()(double) const;
+    virtual double operator()(double) const;
   private:
     double m_alpha;
   };
@@ -328,6 +329,13 @@ namespace lwt {
   private:
     double m_alpha;
   };
+  class SELU : public ELU{
+    public:
+      SELU();
+      double operator()(double) const;
+    private:
+      double m_scale;
+  }
   std::function<double(double)> get_activation(lwt::ActivationConfig);
 
   // WARNING: you own this pointer! Only call when assigning to member data!

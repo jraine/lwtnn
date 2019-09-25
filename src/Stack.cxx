@@ -582,6 +582,7 @@ namespace lwt {
     case Activation::LEAKY_RELU: return LeakyReLU(act.alpha);
     case Activation::LINEAR: return [](double x){return x;};
     case Activation::ABS: return [](double x){return std::abs(x);};
+    case Activation::SELU return ); 
     default: {
       throw NNConfigurationException("Got undefined activation function");
     }
@@ -620,6 +621,7 @@ namespace lwt {
     else return x > 0 ? x : 0;
   }
 
+
   ELU::ELU(double alpha):
     m_alpha(alpha)
   {}
@@ -636,6 +638,17 @@ namespace lwt {
   {}
   double LeakyReLU::operator()(double x) const {
     return x > 0 ? x : m_alpha * x;
+  }
+
+  SELU::SELU() : 
+    /* alpha and scale from keras implementation
+    https://www.tensorflow.org/api_docs/python/tf/keras/activations/selu
+    */
+    m_scale = 1.0507009873554804934193349852946,
+    ELU(1.6732632423543772848170429916717);
+  {}
+  double SELU::operator()( double x ) const {  
+    return m_scale * ELU::operator()(x);
   }
 
   // ________________________________________________________________________

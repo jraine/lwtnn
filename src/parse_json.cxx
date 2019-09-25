@@ -217,6 +217,7 @@ namespace {
     if (str == "leakyrelu") return Activation::LEAKY_RELU;
     if (str == "swish") return Activation::SWISH;
     if (str == "abs") return Activation::ABS;
+    if (str == "selu") return Activation::SELU;
     throw std::logic_error("activation function " + str + " not recognized");
     return Activation::LINEAR;
   }
