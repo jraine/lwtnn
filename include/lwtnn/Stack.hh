@@ -304,7 +304,6 @@ namespace lwt {
   double nn_hard_sigmoid( double x );
   double nn_tanh( double x );
   double nn_relu( double x );
-  // double nn_selu( double x );
   class ELU
   {
   public:

@@ -582,7 +582,7 @@ namespace lwt {
     case Activation::LEAKY_RELU: return LeakyReLU(act.alpha);
     case Activation::LINEAR: return [](double x){return x;};
     case Activation::ABS: return [](double x){return std::abs(x);};
-    case Activation::SELU return ); 
+    case Activation::SELU return SELU();   
     default: {
       throw NNConfigurationException("Got undefined activation function");
     }
@@ -620,7 +620,6 @@ namespace lwt {
     if (std::isnan(x)) return x;
     else return x > 0 ? x : 0;
   }
-
 
   ELU::ELU(double alpha):
     m_alpha(alpha)
